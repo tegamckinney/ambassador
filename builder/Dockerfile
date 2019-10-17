@@ -27,7 +27,7 @@ ARG base="frolvlad/alpine-glibc:alpine-3.10"
 ARG artifacts="builder"
 
 # This controls where we copy envoy from.
-ARG envoy="quay.io/datawire/ambassador:0.80.0"
+ARG envoy
 
 ########################################
 # The builder image
@@ -86,7 +86,7 @@ RUN apk --no-cache add bash curl python3 libcap
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-COPY --from=envoy /usr/local/bin/envoy /usr/local/bin/envoy
+COPY --from=builder /usr/local/bin/envoy /usr/local/bin/envoy
 COPY --from=builder /usr/lib/python3.7/site-packages /usr/lib/python3.7/site-packages
 
 COPY --from=artifacts /buildroot/bin/ambex /usr/bin/ambex
