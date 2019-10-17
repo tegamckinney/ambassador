@@ -1,4 +1,4 @@
-ARG base="frolvlad/alpine-glibc:alpine-3.9"
+ARG base="frolvlad/alpine-glibc:alpine-3.10"
 
 FROM ${base}
 COPY --from=snapshot /buildroot/bin/httptest /usr/local/bin/httptest
