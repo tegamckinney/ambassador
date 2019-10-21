@@ -127,6 +127,9 @@ class Config:
         if self.statsd['enabled']:
             self.statsd['interval'] = os.environ.get('STATSD_FLUSH_INTERVAL', '1')
 
+            if 'STATSD_PREFIX' in os.environ:
+                self.statsd['prefix'] = os.environ.get('STATSD_PREFIX')
+
             statsd_host = os.environ.get('STATSD_HOST', 'statsd-sink')
             try:
                 resolved_ip = socket.gethostbyname(statsd_host)
